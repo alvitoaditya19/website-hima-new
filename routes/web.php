@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +29,12 @@ Route::get('/news', [App\Http\Controllers\News\NewsController::class, 'index'])-
 
 Route::get('/e-commerce', [App\Http\Controllers\ECommerce\ECommerceController::class, 'index'])->name('e-commerce');
 
+Route::get('/register/success', [App\Http\Controllers\Auth\RegisterController::class, 'success'])->name('register-success');
 
 
+Route::group(['middleware' => ['auth']], function(){
+  Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+              ->name('logout');
+});
 
-
-
-
-
-
+Auth::routes();
