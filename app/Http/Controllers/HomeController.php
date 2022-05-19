@@ -7,12 +7,6 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-
-    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
@@ -20,5 +14,10 @@ class HomeController extends Controller
     public function index()
     {
         return view('pages.home');
+    }
+
+    public function adminView()
+    {
+        return view('pages.admin.dashboard');
     }
 }

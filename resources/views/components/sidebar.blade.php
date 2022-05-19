@@ -1,36 +1,40 @@
 <!-- SIDEBAR  -->
 <div class="sidebar">
-    @auth
-        <div class="logo-details">
-            <div class="dropdown">
-                <button class="btn btn-primary-outline" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">
-                    <img src="https://ui-avatars.com/api/?name={{Str::limit(Auth::user()->name, 12)  }}" class="icon" alt="" style="border-radius: 50%">
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li>
-                      <a class="dropdown-item bg-transparent text-dark" href="#">
-                      <h3 class="">Logout</h3>
-                        </a>
-                    </li>
-                </ul>
+    <div>
+        @auth
+            <div class="logo-details">
+                <div class="dropdown">
+                    <button class="btn btn-primary-outline" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">
+                        <img src="https://ui-avatars.com/api/?name={{Str::limit(Auth::user()->name, 12)  }}" class="icon" alt="" style="border-radius: 50%">
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li>
+                        <a class="dropdown-item bg-transparent" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <h3 class="text-light">Logout</h3>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="logo_name">{{Str::limit(Auth::user()->name, 7)  }}</div>
+                <i class="bx bx-menu" id="btn"></i>
+            </div>    
+        @endauth
+        @guest
+            <div class="logo-details">
+                <img src="images/himanitro/icon-hima.png" class="icon" />
+                <div class="logo_name">Himanitro</div>
+                <i class="bx bx-menu" id="btn"></i>
             </div>
-            
-            <div class="logo_name">{{Str::limit(Auth::user()->name, 7)  }}</div>
-            <i class="bx bx-menu" id="btn"></i>
-        </div>    
-    @endauth
-    @guest
-        <div class="logo-details">
-            <img src="images/himanitro/icon-hima.png" class="icon" />
-            <div class="logo_name">Himanitro</div>
-            <i class="bx bx-menu" id="btn"></i>
-        </div>
-    @endguest
-    <li>
-        <i class="bx bx-search"></i>
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search..." />
-        <span class="tooltip">Search</span>
-    </li>
+        @endguest
+
+        <li>
+            <i class="bx bx-search"></i>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search..." />
+            <span class="tooltip">Search</span>
+        </li>
+    </div>
     <ul class="nav-list" id="myTable">
         <li>
             <a href="{{ route('home') }}">
@@ -75,6 +79,12 @@
             <span class="tooltip">Bank soal</span>
         </li>
         <li>
+            <a href="#" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Sign Out</a>
+            <form id="logout-form" action="{{route('logout')}}" method="post" style="display: none">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            </form>
+        </li>
+        <li>
             <a href="{{ route('news') }}">
                 <i class="fa-solid fa-video"></i>
                 <span class="links_name">Berita</span>
@@ -88,13 +98,6 @@
             </a>
             <span class="tooltip">E-commerce</span>
         </li>
-        <li>
-            <a href="#" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Sign Out</a>
-            <form id="logout-form" action="{{route('logout')}}" method="post" style="display: none">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </form>
-        </li>
-
         <li>
             <a href="{{ route('contact') }}">
                 <i class="fa-solid fa-id-card"></i>

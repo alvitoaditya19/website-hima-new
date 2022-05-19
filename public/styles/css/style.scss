@@ -81,6 +81,19 @@ html{
    padding: 6px 14px;
    z-index: 99;
    transition: all 0.5s ease;
+   overflow: auto;
+
+   &::-webkit-scrollbar{
+      width:.5rem;
+   }
+
+   &::-webkit-scrollbar-track{
+      background: #11101D;
+   }
+
+   &::-webkit-scrollbar-thumb{
+      background: #f0a500;
+   }
  }
  .sidebar.open{
    width: 250px;
@@ -245,7 +258,6 @@ html{
  }
  .sidebar li.profile{
    position: fixed;
-   height: 60px;
    width: 78px;
    left: 0;
    bottom: -8px;
@@ -743,90 +755,104 @@ section{
 
 //courses css
 .courses{
-    position: relative;
-    top: 0;
-    left: 78px;
-    width: calc(100% - 78px);
-    transition: all 0.5s ease;
-    z-index: 2;
-   .box-container{
-      @include grid(30rem);
+   position: relative;
+   top: 0;
+   left: 78px;
+   width: calc(100% - 78px);
+   transition: all 0.5s ease;
+   z-index: 2;
 
-      .box{
+  .box-container{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
 
-         &:hover .image img{
-            transform: scale(1.1);
-         }
+     .box{
+         width: 30%;
+         margin: 10px;
+         display: none;
 
-         &.hide{
-            display: none;
-         }
+        &:hover .image img{
+           transform: scale(1.1);
+        }
 
-         .image{
-            height: 25rem;
-            overflow: hidden;
-            position: relative;
+        
 
-            img{
-               height: 100%;
-               width: 100%;
-               object-fit: cover;
-            }
+        .image{
+           height: 25rem;
+           overflow: hidden;
+           position: relative;
 
-            h3{
-               @include titleText(1.5rem);
-               position: absolute;
-               top: 1rem; left: 1rem;
-               padding: .5rem 1.5rem;
-               background: #11101D;
-               color: #FFF;
-               border: 1px solid #eead22;
-               border-radius: 5px;
-            }
-         }
+           img{
+              height: 100%;
+              width: 100%;
+              object-fit: cover;
+           }
 
-         .content{
-            padding: 2rem;
-            text-align: center;
-            border: 1.5px solid #f0a500;
-            background: #11101D;
+           h3{
+              @include titleText(1.5rem);
+              position: absolute;
+              top: 1rem; left: 1rem;
+              padding: .5rem 1.5rem;
+              background: #11101D;
+              color: #FFF;
+              border: 1px solid #eead22;
+              border-radius: 5px;
+           }
+        }
 
-            h3{
-               @include titleText(2rem);
-               color: #fff;
-            }
+        .content{
+           padding: 2rem;
+           text-align: center;
+           border: 1.5px solid #f0a500;
+           background: #11101D;
 
-            p{
-               padding: 1rem 0;
-               @include graphText(1.6rem);
-               color: #fff;
-            }
+           h3{
+              @include titleText(2rem);
+              color: #fff;
+           }
 
-            .icons{
-               display: flex;
-               align-items: center;
-               justify-content: space-between;
-               margin-top: 2rem;
-               padding-top: 2rem;
-               border-top: 1.5px solid #f0a500;
+           p{
+              padding: 1rem 0;
+              @include graphText(1.6rem);
+              color: #fff;
+           }
 
-               span{
-                  @include titleText(1.5rem);
-                  color: #fff;
+           .icons{
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-top: 2rem;
+              padding-top: 2rem;
+              border-top: 1.5px solid #f0a500;
 
-                  i{
-                     color: #f0a500;
-                     padding-right: .5rem;
-                  }
-               }
-            }
-         }
-      }
-   }
-   .load-more{
-      margin-top: 2rem;
-      text-align: center;
-   }
+              span{
+                 @include titleText(1.5rem);
+                 color: #fff;
+
+                 i{
+                    color: #f0a500;
+                    padding-right: .5rem;
+                 }
+              }
+           }
+        }
+     }
+  }
+  #loadMore {
+   width: 200px;
+   display: block;
+   text-align: center;
+   margin: 20px auto;
+   padding: 10px;
+   transition: .3s;
+ }
+ .noContent {
+   color: #000 !important;
+   background-color: transparent !important;
+   pointer-events: none;
+ }
 }
 
 //contact css
@@ -1123,6 +1149,10 @@ section{
    
    .home .slide .content h3{
       font-size: 3rem;
+   }
+
+   .courses .box-container .box{
+      width: 90%;
    }
 
 }

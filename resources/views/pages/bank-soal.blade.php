@@ -107,7 +107,7 @@
 
 
 
-            <div class="box hide">
+            <div class="box">
                 <div class="image">
                     <img src="images/bank-soal/semester-7.png" alt="">
                     <h3>Bank Soal</h3>
@@ -121,7 +121,7 @@
                 </div>
             </div>
 
-            <div class="box hide">
+            <div class="box">
                 <div class="image">
                     <img src="images/bank-soal/last-semester.png" alt="">
                     <h3>Bank Soal</h3>
@@ -137,9 +137,7 @@
 
         </div>
 
-        <div class="load-more">
-            <div class="btn1">load more</div>
-        </div>
+        <div><a href="#" id="loadMore" class="btn1">Load More</a></div>
 
     </section>
 
@@ -202,5 +200,11 @@
 @section('style_js')
     <!-- swiper js link  -->
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-    <script src="/styles/js/courses.js"></script>
+    <script src="/styles/js/courses.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        
+    </script>
+
 @endsection

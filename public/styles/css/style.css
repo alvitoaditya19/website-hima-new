@@ -62,6 +62,19 @@ html::-webkit-scrollbar-thumb {
   z-index: 99;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  overflow: auto;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: .5rem;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: #11101D;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #f0a500;
 }
 
 .sidebar.open {
@@ -236,7 +249,6 @@ html::-webkit-scrollbar-thumb {
   text-decoration: none;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
-  /* background: #11101D; */
 }
 
 .sidebar li a:hover {
@@ -275,11 +287,10 @@ html::-webkit-scrollbar-thumb {
 
 .sidebar li.profile {
   position: fixed;
-  height: 100px;
   width: 78px;
   left: 0;
   bottom: -8px;
-  padding: 12px 14px;
+  padding: 10px 14px;
   background: #1d1b31;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -867,20 +878,28 @@ section {
 }
 
 .courses .box-container {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (minmax(30rem, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  gap: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.courses .box-container .box {
+  width: 30%;
+  margin: 10px;
+  display: none;
 }
 
 .courses .box-container .box:hover .image img {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
-}
-
-.courses .box-container .box.hide {
-  display: none;
 }
 
 .courses .box-container .box .image {
@@ -959,9 +978,20 @@ section {
   padding-right: .5rem;
 }
 
-.courses .load-more {
-  margin-top: 2rem;
+.courses #loadMore {
+  width: 200px;
+  display: block;
   text-align: center;
+  margin: 20px auto;
+  padding: 10px;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.courses .noContent {
+  color: #000 !important;
+  background-color: transparent !important;
+  pointer-events: none;
 }
 
 .contact {
@@ -1301,6 +1331,9 @@ section {
 @media (max-width: 768px) {
   .home .slide .content h3 {
     font-size: 3rem;
+  }
+  .courses .box-container .box {
+    width: 90%;
   }
 }
 

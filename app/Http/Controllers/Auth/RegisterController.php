@@ -8,8 +8,6 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
-
 
 class RegisterController extends Controller
 {
@@ -53,6 +51,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'username' => ['required', 'string', 'max:255','unique:users'],
+
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -69,20 +68,10 @@ class RegisterController extends Controller
     {
         return User::create([
             'username' => $data['username'],
+
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'avatar' => "https://ui-avatars.com/api/?name=Admin"
         ]);
-    }
-
-    public function success()
-    {
-        return view('pages.contact');
-    }
-
-    public function check(Request $request)
-    {
-        return User::where('email', $request->email)->count() > 0? 'Unavailable' : 'Available';
     }
 }

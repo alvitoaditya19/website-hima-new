@@ -64,6 +64,7 @@ html::-webkit-scrollbar-thumb {
   z-index: 99;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  
 }
 
 .sidebar.open {
