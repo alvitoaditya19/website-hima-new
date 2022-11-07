@@ -3,21 +3,8 @@
     <div>
         @auth
             <div class="logo-details">
-                <div class="dropdown">
-                    <button class="btn btn-primary-outline" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">
-                        <img src="https://ui-avatars.com/api/?name={{Str::limit(Auth::user()->name, 12)  }}" class="icon" alt="" style="border-radius: 50%">
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li>
-                        <a class="dropdown-item bg-transparent" href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <h3 class="text-light">Logout</h3>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="logo_name">{{Str::limit(Auth::user()->name, 7)  }}</div>
+                <img src="https://ui-avatars.com/api/?name={{Str::limit(Auth::user()->name, 12)  }}" class="icon" alt="" style="border-radius: 50%">
+                <div class="logo_name">{{Str::limit(Auth::user()->name, 7)}}</div>
                 <i class="bx bx-menu" id="btn"></i>
             </div>    
         @endauth
@@ -79,12 +66,6 @@
             <span class="tooltip">Bank soal</span>
         </li>
         <li>
-            <a href="#" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Sign Out</a>
-            <form id="logout-form" action="{{route('logout')}}" method="post" style="display: none">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </form>
-        </li>
-        <li>
             <a href="{{ route('news') }}">
                 <i class="fa-solid fa-video"></i>
                 <span class="links_name">Berita</span>
@@ -104,6 +85,12 @@
                 <span class="links_name">Contact</span>
             </a>
             <span class="tooltip">Contact</span>
+        </li>
+        <li>
+            <a href="" class="btn-custom">
+                <span class="links_name">Login</span>
+
+            </a>
         </li>
         <h1 class="text-light hover mt-3 mt-lg-4" id="noneText"></h1>
         @guest
@@ -126,12 +113,10 @@
                     <div class="name_job">
                         <div class="name">{{ Auth::user()->username }}</div>
                         <div class="job">Hi, {{Str::limit(Auth::user()->name, 12)  }}</div>
-                        <div class="btn btn-danger">
-                            <a href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Logout
-                            </a>
-                        </div>
+                        <a href="{{ route('logout') }}" class="btn btn-custom"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Logout
+                        </a>
                     </div>
                 </div>
                 <a href="#"><i class='bx bx-log-out' id="log_out" ></i></a>

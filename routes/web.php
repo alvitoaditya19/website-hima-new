@@ -21,7 +21,13 @@ use App\Http\Controllers\Admin\UserController;
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
-Route::get('/departemen', [App\Http\Controllers\DepartemenController::class, 'index'])->name('departemen');
+// Route::get('/departemen', [App\Http\Controllers\DepartemenController::class, 'index'])->name('departemen');
+// Route::resources('/departemen', [App\Http\Controllers\DepartemenController::class, 'index']);
+Route::prefix('/departemen')->group(function(){
+  Route::get('/', [App\Http\Controllers\DepartemenController::class, 'index'])->name('departemen');
+  Route::get('/exoff', [App\Http\Controllers\DepartemenController::class, 'exoff'])->name('exoff');
+});
+
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/course', [App\Http\Controllers\CourseController::class, 'index'])->name('course');
 Route::get('/bank-soal', [App\Http\Controllers\BankSoalController::class, 'index'])->name('bank-soal');

@@ -21,7 +21,7 @@
             <div class="box">
                 <img src="images/himanitro/departemen/ex-officio/logo-kabinet.png">
                 <h3>Ex-officio</h3>
-                <a href="ex-officio.html"><button type="button" class="btn1"> Explore <i
+                <a href="{{ route('exoff') }}"><button type="button" class="btn1"> Explore <i
                             class="fa-solid fa-angles-right"></i></button></a>
             </div>
 

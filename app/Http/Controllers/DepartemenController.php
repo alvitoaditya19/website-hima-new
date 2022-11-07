@@ -10,4 +10,9 @@ class DepartemenController extends Controller
     {
         return view('pages.departemen');
     }
+
+    public function exoff()
+    {
+        return view('pages.departemen.exoff');
+    }
 }

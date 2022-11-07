@@ -18,6 +18,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function updateStatus(Request $request)
+    {
+        $product = User::find($request->id); 
+        $product->status = $request->is_admin; 
+        $product->save(); 
+        return response()->json(['success'=>'Status change successfully.']); 
+    }
     public function index()
     {
         if (request()->ajax()) {
@@ -33,10 +40,10 @@ class UserController extends Controller
                             Aksi
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="' . route('user.edit', $item->id) . '">
+                            <a class="dropdown-item" href="' . route('admin.user.edit', $item->id) . '">
                                 Sunting
                             </a>
-                            <form action="' . route('user.destroy', $item->id) . '"method="POST">
+                            <form action="' . route('admin.user.destroy', $item->id) . '"method="POST">
                                 ' . method_field('delete') . csrf_field() . '
                                 <button type="submit" class="dropdown-item text-danger">
                                     Hapus
@@ -47,6 +54,9 @@ class UserController extends Controller
                 </div>
             ';
             })
+                ->editColumn('is_admin', function ($item) {
+                    return 'data-id="'.$item->id.'" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive"'.  $item->status ? 'checked' : '' .'';
+                })
                 ->rawColumns(['action', 'photo'])
                 ->make();
         }

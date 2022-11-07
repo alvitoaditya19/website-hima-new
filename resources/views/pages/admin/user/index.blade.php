@@ -7,6 +7,8 @@
 @section('style_css')
     <link rel="stylesheet" href="{{ asset('/styles/css/admin/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('/styles/css/admin/course.css') }}" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script> 
 @endsection
 
 @section('content')
@@ -62,12 +64,12 @@
       <div class="section-content section-dashboard-home" data-aos="fade-up">
           <div class="container-fluid">
               <div class="dashboard-heading">
-                  <h2 class="dashboard-title">Course</h2>
+                  <h2 class="dashboard-title">USER</h2>
                   <p class="dashboard-subtitle">
                       Look what you have made today!
                   </p>
                   <a href="" class="btn btn1 mb-4">
-                      Tambah Course
+                      Tambah User
                   </a>
               </div>
               <div class="card">
@@ -96,6 +98,7 @@
 @endsection
 
 @push('addon-script')
+
     <script>
         var datatable = $('#crudTable').DataTable({
             processing: true,
@@ -129,7 +132,33 @@
                     data: 'is_admin',
                     name: 'is_admin'
                 },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searcable: false,
+                    width: '15%',
+                },
             ]
         })
     </script>
+
+    <script>
+        $(function() { 
+                $('.toggle-class').change(function() { 
+                var status = $(this).prop('checked') == true ? 1 : 0;  
+                var id = $(this).data('id');  
+                $.ajax({ 
+                    type: "GET", 
+                    dataType: "json", 
+                    url: '/status/update', 
+                    data: {'is_admin': is_admin, 'id': id}, 
+                    success: function(data){ 
+                    console.log(data.success) 
+                } 
+            }); 
+        }) 
+        }); 
+    </script>
+
 @endpush
