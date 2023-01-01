@@ -6,6 +6,13 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\SettingController as SettingDashboard;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\DosenController;
+use App\Http\Controllers\Admin\MataKuliahController;
+
+
+use App\Http\Controllers\Admin\FilePdfController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +46,10 @@ Route::get('/e-commerce', [App\Http\Controllers\ECommerce\ECommerceController::c
 
 Route::get('/register/success', [App\Http\Controllers\Auth\RegisterController::class, 'success'])->name('register-success');
 
+Route::get('/file', [App\Http\Controllers\Admin\FilePdfController::class, 'index'])->name('file');
+Route::post('/file', [App\Http\Controllers\Admin\FilePdfController::class, 'store'])->name('file.store');
+
+
 
 // Route::group(['middleware' => ['auth']], function(){
 //       Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
@@ -61,6 +72,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/setting', [SettingDashboard::class, 'index'])->name('setting');
         Route::resource('/course', CourseController::class);
         Route::resource('/user', UserController::class);
+        Route::resource('/dosen', DosenController::class);
+        Route::resource('/mata-kuliah', MataKuliahController::class);
+
+
     });
     // ->namespace('Admin') after prefix
 });

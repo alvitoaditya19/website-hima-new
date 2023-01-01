@@ -1,14 +1,15 @@
 @extends('layouts.admin')
 
 @section('title')
-   Tambah Course
+    Edit Dosen
 @endsection
 
 @section('style_css')
   <link rel="stylesheet" href="{{ asset('/styles/css/main.css') }}" />
 @endsection
+
 @section('content')
-  <!-- Page Content -->
+      <!-- Page Content -->
   <div id="page-content-wrapper">
     <nav
       class="navbar navbar-store navbar-expand-lg navbar-light fixed-top"
@@ -99,53 +100,40 @@
         <div class="dashboard-content">
           <div class="row">
             <div class="col-12">
-              <form action="{{ route('admin.course.store') }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('admin.dosen.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                @method('PUT')
                 @csrf
                 <div class="card">
                   <div class="card-body">
+
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label for="name_course">Nama Course</label>
+                          <label for="name">Nama Dosen</label>
                           <input
                             type="text"
                             class="form-control"
-                            id="name_course"
+                            id="name"
                             aria-describedby="emailHelp"
-                            name="name_course"
+                            name="name"
+                            value="{{$item->name}}"
                           />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="name_dosen">Nama Dosen</label>
-                          {{-- <input
-                            type="text"
-                            class="form-control"
-                            id="name_dosen"
-                            aria-describedby="emailHelp"
-                            name="name_dosen"
-                          /> --}}
-                          <select name="categories_id" class="form-control">
-                            @foreach ($dosens as $dosens)
-                              <option value="{{ $dosens->id }}">{{ $dosens->name }}</option>
-                            @endforeach
-                          </select>
+                
                         </div>
                       </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label for="link">Link Video</label>
+                            <label for="nip">No NIP</label>
                             <input
                             type="text"
                             class="form-control"
-                            id="link"
+                            id="nip"
                             aria-describedby="emailHelp"
-                            name="link"
+                            name="nip"
+                            value="{{$item->nip}}"
+
                           />
                           </div>
                         </div>
@@ -153,32 +141,18 @@
                     <div class="row">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label for="jumlah_video">Jumlah Video</label>
+                            <label for="mata_kuliah">Mata Kuliah</label>
                             <input
                             type="text"
                             class="form-control"
-                            id="jumlah_video"
+                            id="mata_kuliah"
                             aria-describedby="emailHelp"
-                            name="jumlah_video"
+                            name="mata_kuliah"
+                            value="{{$item->mata_kuliah}}"
+
                           />
                           </div>
                         </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                          <div class="form-group">
-                              <label>Foto Thumbnail</label>
-                              <img src="" id="perview">
-                              <input 
-                                type="file" 
-                                class="form-control" 
-                                name="photos"
-                                id="photos" 
-                                placeholder="Masukkan Gambar"
-                                required 
-                              />
-                          </div>
-                      </div>
                     </div>
                     <div class="row">
                       <div class="col text-right">
@@ -206,23 +180,23 @@
     <script>
         CKEDITOR.replace('editor');
     </script>
-    <script>
-      function readURL(input){
-            if(input.files && input.files[0]){
-                  const reader = new FileReader();
-                  reader.onload = function(e){
-                        $('#perview').attr('src', e.target.result);
-                        $('#perview').attr('width', '40%');
-                        $('#perview').attr('height', '70%');
+  <script>
+    function readURL(input){
+          if(input.files && input.files[0]){
+                const reader = new FileReader();
+                reader.onload = function(e){
+                      $('#perview').attr('src', e.target.result);
+                      $('#perview').attr('width', '40%');
+                      $('#perview').attr('height', '70%');
 
-                  }
+                }
 
-                  reader.readAsDataURL(input.files[0])
-            }
-      }
+                reader.readAsDataURL(input.files[0])
+          }
+    }
 
-      $('#photos').change(function(){
-            readURL(this)
-      })
-    </script>
+    $('#photos').change(function(){
+          readURL(this)
+    })
+  </script>
 @endpush

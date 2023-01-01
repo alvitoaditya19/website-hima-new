@@ -12,6 +12,8 @@ use Yajra\DataTables\Facades\DataTables;
 
 
 use App\Models\User;
+use App\Models\Dosen;
+
 use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
@@ -60,9 +62,13 @@ class CourseController extends Controller
     public function create()
     {
         $users = User::all();
+        $dosens = Dosen::all();
+
 
         return view('pages.admin.course.create', [
             'users' => $users,
+            'dosens' => $dosens,
+
         ]);
     }
     public function store(CourseRequest $request)

@@ -91,95 +91,46 @@
     >
       <div class="container-fluid">
         <div class="dashboard-heading">
-          <h2 class="dashboard-title">Store Settings</h2>
+          <h2 class="dashboard-title">Tambah Mata Kuliah</h2>
           <p class="dashboard-subtitle">
-            Make store that profitable
+            Ayo tambah mata kuliah kamu
           </p>
         </div>
         <div class="dashboard-content">
           <div class="row">
             <div class="col-12">
-              <form action="{{ route('admin.course.store') }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('admin.mata-kuliah.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label for="name_course">Nama Course</label>
+                          <label for="name">Nama</label>
                           <input
                             type="text"
                             class="form-control"
-                            id="name_course"
+                            id="name"
                             aria-describedby="emailHelp"
-                            name="name_course"
+                            name="name"
                           />
+                
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label for="name_dosen">Nama Dosen</label>
-                          {{-- <input
-                            type="text"
-                            class="form-control"
-                            id="name_dosen"
-                            aria-describedby="emailHelp"
-                            name="name_dosen"
-                          /> --}}
-                          <select name="categories_id" class="form-control">
-                            @foreach ($dosens as $dosens)
-                              <option value="{{ $dosens->id }}">{{ $dosens->name }}</option>
+                          <label for="semester.name">Semester</label>
+                          <select name="semester_id" class="form-control">
+                            @foreach ($semesters as $semester)
+                              <option value="{{ $semester->id }}">{{ $semester->name }}</option>
                             @endforeach
                           </select>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="link">Link Video</label>
-                            <input
-                            type="text"
-                            class="form-control"
-                            id="link"
-                            aria-describedby="emailHelp"
-                            name="link"
-                          />
-                          </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="jumlah_video">Jumlah Video</label>
-                            <input
-                            type="text"
-                            class="form-control"
-                            id="jumlah_video"
-                            aria-describedby="emailHelp"
-                            name="jumlah_video"
-                          />
-                          </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                          <div class="form-group">
-                              <label>Foto Thumbnail</label>
-                              <img src="" id="perview">
-                              <input 
-                                type="file" 
-                                class="form-control" 
-                                name="photos"
-                                id="photos" 
-                                placeholder="Masukkan Gambar"
-                                required 
-                              />
-                          </div>
-                      </div>
-                    </div>
+        
                     <div class="row">
                       <div class="col text-right">
                         <button

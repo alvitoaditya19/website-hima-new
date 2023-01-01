@@ -5,6 +5,12 @@
   <div class="list-group list-group-flush">
     <a href="{{ route('admin.dashboard') }}" class="list-group-item list-group-item-action {{ request()->is('admin') ? 'active' : '' }}">
         Dashboard</a>
+    <a href="{{ route('admin.mata-kuliah.index') }}"  class="list-group-item list-group-item-action {{ request()->is('admin/mata-kuliah*') ? 'active' : '' }}" class="list-group-item list-group-item-action ">
+        Mata Kuliah</a>
+    {{-- <a href="{{ route('admin.semester.index') }}"  class="list-group-item list-group-item-action {{ request()->is('admin/dosen*') ? 'active' : '' }}" class="list-group-item list-group-item-action ">
+        Semester</a> --}}
+    <a href="{{ route('admin.dosen.index') }}"  class="list-group-item list-group-item-action {{ request()->is('admin/dosen*') ? 'active' : '' }}" class="list-group-item list-group-item-action ">
+            Dosen</a>
     <a href="{{ route('admin.course.index') }}"  class="list-group-item list-group-item-action {{ request()->is('admin/course*') ? 'active' : '' }}" class="list-group-item list-group-item-action ">
         Course</a>
     <a href="#"  class="list-group-item list-group-item-action {{ request()->is('admin/product-gallery*') ? 'active' : '' }}" class="list-group-item list-group-item-action ">
